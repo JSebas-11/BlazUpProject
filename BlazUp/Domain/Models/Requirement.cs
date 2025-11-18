@@ -1,8 +1,10 @@
-﻿using Domain.Models.Lookups;
+﻿using Domain.Abstractions.Workflows;
+using Domain.Models.Lookups;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Models;
 
-public partial class Requirement {
+public partial class Requirement : IEntityState, IEntityPriority {
     //-------------------------PROPERTIES-------------------------
     public long ReqId { get; set; }
     public string ReqName { get; set; } = null!;
@@ -14,6 +16,12 @@ public partial class Requirement {
     public int? PriorityId { get; set; }
     public int? ReqStateId { get; set; }
     public int? CreatedById { get; set; }
+
+    //-------------------------BEHAVIORS-------------------------
+    [NotMapped]
+    public int? StateId { get => ReqStateId; set => ReqStateId = value; }
+    [NotMapped]
+    public int? PriorityLevelId { get => PriorityId; set => PriorityId = value; }
 
     //-------------------------RELATIONSHIPS-------------------------
     public virtual UserInfo? CreatedBy { get; set; }

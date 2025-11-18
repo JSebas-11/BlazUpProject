@@ -1,8 +1,10 @@
-﻿using Domain.Models.Lookups;
+﻿using Domain.Abstractions.Workflows;
+using Domain.Models.Lookups;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Models;
 
-public partial class Project {
+public partial class Project : IEntityState {
     //-------------------------PROPERTIES-------------------------
     public int ProjectId { get; set; }
     public string ProjectName { get; set; } = null!;
@@ -12,6 +14,10 @@ public partial class Project {
     public decimal Progress { get; set; }
     public int? ProjectStateId { get; set; }
     public int? CreatedById { get; set; }
+
+    //-------------------------BEHAVIORS-------------------------
+    [NotMapped]
+    public int? StateId { get => ProjectStateId; set => ProjectStateId = value; }
 
     //-------------------------RELATIONSHIPS-------------------------
     public virtual UserInfo? CreatedBy { get; set; }
