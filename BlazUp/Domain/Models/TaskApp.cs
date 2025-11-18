@@ -1,8 +1,10 @@
-﻿using Domain.Models.Lookups;
+﻿using Domain.Abstractions.Workflows;
+using Domain.Models.Lookups;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Models;
 
-public partial class TaskApp {
+public partial class TaskApp : IEntityState, IEntityPriority {
     //-------------------------PROPERTIES-------------------------
     public long TaskId { get; set; }
     public string TaskName { get; set; } = null!;
@@ -14,6 +16,12 @@ public partial class TaskApp {
     public int? PriorityId { get; set; }
     public int? TaskStateId { get; set; }
     public int? CreatedById { get; set; }
+
+    //-------------------------BEHAVIORS-------------------------
+    [NotMapped]
+    public int? StateId { get => TaskStateId; set => TaskStateId = value; }
+    [NotMapped]
+    public int? PriorityLevelId { get => PriorityId; set => PriorityId = value; }
 
     //-------------------------RELATIONSHIPS-------------------------
     public virtual UserInfo? CreatedBy { get; set; }
