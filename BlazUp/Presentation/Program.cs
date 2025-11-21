@@ -2,6 +2,7 @@ using MudBlazor.Services;
 using Presentation.Components;
 using Application;
 using Infrastructure;
+using Presentation;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,11 +16,13 @@ builder.Services.AddRazorComponents()
 // Add Infrastructure Layer.
 string? connStr = builder.Configuration.GetConnectionString("DefaultConnection");
 if (String.IsNullOrWhiteSpace(connStr)) { throw new InvalidOperationException("Connection could not be found"); }
-
 builder.Services.AddInfrastructure(connStr);
 
 // Add Application Layer.
 builder.Services.AddApplication();
+
+// Add Presentation Layer.
+builder.Services.AddPresentation();
 
 var app = builder.Build();
 

@@ -1,4 +1,5 @@
 ﻿using Domain.Common;
+using Domain.Common.Enums;
 
 namespace Domain.Abstractions.Workflows;
 

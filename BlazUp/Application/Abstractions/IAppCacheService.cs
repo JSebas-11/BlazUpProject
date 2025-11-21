@@ -1,9 +1,8 @@
 ﻿using Domain.Models.Lookups;
 
-namespace Domain.Abstractions.Services.Entities;
+namespace Application.Abstractions;
 
-//Clase para agrupar los Lookups de uso general en varias entidades
-public interface ICatalogService {
+public interface IAppCacheService {
     Task<IReadOnlyList<LevelPriority>> GetPrioritiesAsync();
     Task<IReadOnlyList<RequirementType>> GetReqTypesAsync();
     Task<IReadOnlyList<StateEntity>> GetStatesAsync();

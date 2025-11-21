@@ -1,17 +1,17 @@
 ﻿using Domain.Abstractions.Repositories;
+using Domain.Common;
 using Domain.Models;
 using Domain.Models.Lookups;
 
 namespace Domain.Abstractions.UnitOfWork;
 
 //Interface que expondra los Repositories a los Services y les permitira ser tratados como unidad
-public interface IUnitOfWork {
+public interface IUnitOfWork : IAsyncDisposable {
     //---------------------PROPERTIES---------------------
     //---------------------readOnly---------------------
     public IReadOnlyRepository<LevelPriority> LevelPriorities { get; }
     public IReadOnlyRepository<RequirementType> RequirementTypes { get; }
     public IReadOnlyRepository<StateEntity> StateEntities { get; }
-    public IReadOnlyRepository<StateNotification> StateNotifications { get; }
     public IReadOnlyRepository<UserRole> UserRoles { get; }
     
     //---------------------full---------------------
@@ -25,5 +25,5 @@ public interface IUnitOfWork {
     public IRepository<UserTask> UserTasks { get; }
 
     //---------------------METHODS---------------------
-    Task<Common.Result> CommitAsync();
+    Task<Result> CommitAsync();
 }

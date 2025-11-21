@@ -1,4 +1,4 @@
-﻿namespace Domain.Common;
+﻿namespace Domain.Common.Enums;
 
 //Enums con relacion indirecta a sus relativos en la DB (valores fijos)
 public enum Role { Admin = 1, Client, Developer }
