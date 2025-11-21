@@ -1,0 +1,47 @@
+﻿@page "/"
+
+<!--MAIN LAYOUT-->
+<MudGrid Justify="Justify.Center">
+    <MudItem xs="12" md="8">
+        <MudPaper Elevation="10" Class="main-bg">
+            <MudStack AlignItems="AlignItems.Center" Spacing="5" Class="py-5">
+
+                <!--MAIN LAYOUT - HEADER -->
+                <MudImage Src="images/blazUpSymbol.jpg" Elevation="5" Class="img-small" />
+                <MudText Typo="Typo.h3" Class="text-color-main">Welcome to BlazUp</MudText>
+                <MudText Typo="Typo.body1" Class="text-color-sec">Manage your projects in the best way with BlazUp</MudText>
+
+                <!--MAIN LAYOUT - FORM -->
+                <MudPaper Elevation="15" Class="pa-10 form-bg">
+                    <MudForm>
+                        <!--MAIN LAYOUT - FORM - DNI -->
+                        <MudTextField T="string" Label="DNI" InputType="InputType.Text"
+                                      Variant="Variant.Filled" MaxLength=13
+                                      HelperText="Type your DNI" HelperTextOnFocus="true"
+                                      Adornment=Adornment.End AdornmentIcon="@Icons.Material.Filled.PermIdentity" AdornmentColor="Color.Primary" />
+
+                        <!--MAIN LAYOUT - FORM - PASSWORD -->
+                        <MudTextField T="string" Label="Password" InputType="InputType.Password"
+                                      Variant="Variant.Filled"
+                                      HelperText="Type your Password" HelperTextOnFocus="true"
+                                      Adornment=Adornment.End AdornmentIcon="@Icons.Material.Filled.Password" AdornmentColor="Color.Primary" />
+
+                        <!--MAIN LAYOUT - FORM - BTNs -->
+                        <MudButton Color="Color.Tertiary" Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.Send" Class="mt-8">
+                            LogIn
+                        </MudButton>
+
+                        <MudButton @onclick="NavigateToRegister" Color="Color.Secondary" Variant="Variant.Text" FullWidth="false" Size="Size.Small"
+                                   DropShadow="true" Class="mt-2">
+                            Don't you have an account? Sign up here
+                        </MudButton>
+
+
+                    </MudForm>
+                </MudPaper>
+            
+            </MudStack>
+        </MudPaper>
+    </MudItem>
+</MudGrid>
+    

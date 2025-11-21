@@ -1,4 +1,15 @@
-﻿@inherits LayoutComponentBase
+﻿@using Presentation.Services
+@inherits LayoutComponentBase
+@inject ThemeService themeService
 
-@Body
+<MudThemeProvider Theme="@themeService.CurrentTheme"/>
+<MudPopoverProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
 
+<MudLayout>
+    <!-- MAIN CONTENT -->
+    <MudContainer MaxWidth="MaxWidth.ExtraExtraLarge" Class="container-overlay radial-gradient-bg-rev">
+        @Body
+    </MudContainer>
+</MudLayout>

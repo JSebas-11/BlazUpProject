@@ -1,0 +1,77 @@
+﻿@page "/register"
+
+<!--MAIN LAYOUT-->
+<MudGrid Justify="Justify.Center" Class="ma-10 py-5">
+    <!--MAIN LAYOUT - FORM -->
+    <MudItem xs="8" md="7">
+        <MudPaper Elevation="10" Class="radial-gradient-bg">
+            <MudStack AlignItems="AlignItems.Center" Spacing="5" Class="py-5">
+
+                <!--MAIN LAYOUT - FORM - HEADER -->
+                <MudText Typo="Typo.h3" Class="text-color-main">BlazUp Register</MudText>
+                <MudText Typo="Typo.body1" Class="text-color-sec">Sign up quick and easy</MudText>
+
+                <!--MAIN LAYOUT - FORM - INPUTS -->
+                <MudPaper Elevation="15" Class="pa-10 form-bg">
+                    <MudForm>
+                        <!--MAIN LAYOUT - FORM - INPUTS - ROLE -->
+                        <MudSelect T="string" Label="Select your role"
+                                   Variant="Variant.Outlined" FullWidth="true"
+                                   AdornmentIcon="@Icons.Material.Filled.SupervisedUserCircle" AdornmentColor="Color.Primary">
+                            <MudSelectItem T="string">Admin</MudSelectItem>
+                            <MudSelectItem T="string">Client</MudSelectItem>
+                            <MudSelectItem T="string">Developer</MudSelectItem>
+                        </MudSelect>
+
+                        <!--MAIN LAYOUT - FORM - INPUTS - DNI -->
+                        <MudTextField T="string" Label="DNI" InputType="InputType.Text"
+                                      Variant="Variant.Filled" MaxLength=13
+                                      HelperText="Type your DNI" HelperTextOnFocus="true"
+                                      Adornment=Adornment.End AdornmentIcon="@Icons.Material.Filled.Badge" AdornmentColor="Color.Primary" />
+
+                        <!--MAIN LAYOUT - FORM - INPUTS - PASSWORD -->
+                        <MudTextField T="string" Label="Password" InputType="InputType.Password"
+                                      Variant="Variant.Filled"
+                                      HelperText="Type your Password" HelperTextOnFocus="true"
+                                      Adornment=Adornment.End AdornmentIcon="@Icons.Material.Filled.Password" AdornmentColor="Color.Primary" />
+                        <MudTextField T="string" Label="Confirm Password" InputType="InputType.Password"
+                                      Variant="Variant.Filled"
+                                      HelperText="Confirm your Password" HelperTextOnFocus="true"
+                                      Adornment=Adornment.End AdornmentIcon="@Icons.Material.Filled.Password" AdornmentColor="Color.Primary" />
+
+
+
+                        <!--MAIN LAYOUT - FORM - INPUTS - BUTTONs -->
+                        <MudButton Color="Color.Tertiary" Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.Send" Class="mt-8">
+                            Sign Up
+                        </MudButton>
+
+                        <MudButton @onclick="NavigateToLogin" Color="Color.Secondary" Variant="Variant.Text" FullWidth="false" Size="Size.Small"
+                                   DropShadow="true" Class="mt-2">
+                            Back to login
+                        </MudButton>
+
+                    </MudForm>
+                </MudPaper>
+
+            </MudStack>
+        </MudPaper>
+    </MudItem>
+
+    <!--MAIN LAYOUT - ASIDE -->
+    <MudItem xs="4" md="5" Class="px-5">
+        <MudStack AlignItems="AlignItems.Center">
+            <!--MAIN LAYOUT - ASIDE - TEXTINFO -->
+            <MudText Typo="Typo.h5" Class="text-color-main">Create your account in a few seconds</MudText>
+            <MudText Typo="Typo.body1" Class="text-color-sec" Align="Align.Center">
+                You can register as an Admin, Client, or Developer. Each role has its own functionalities within the projects
+            </MudText>
+            <MudText Typo="Typo.body1" Class="text-color-sec">
+                (Only one role by registered user (DNI) is allowed)
+            </MudText>
+
+            <!--MAIN LAYOUT - ASIDE - IMAGE -->
+            <MudImage Src="images/blazUpSymbol.jpg" Fluid="true"/>
+        </MudStack>
+    </MudItem>
+</MudGrid>

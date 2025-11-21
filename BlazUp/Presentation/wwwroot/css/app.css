@@ -1,2 +1,69 @@
-﻿body {
+﻿/* --------------- VARIABLES --------------- */
+.text-color-main { color: #ffffffff; }
+.text-color-sec { color: #ffffffaa; }
+
+/* --------------- CONTAINERS --------------- */
+.container-overlay {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--mud-palette-primary);
 }
+
+/* --------------- TEXT --------------- */
+.value-header {
+    text-decoration: underline;
+    text-align: center;
+    font-size: 24px;
+    color: #fff;
+}
+
+.value-content {
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    line-height: 36px;
+    color: var(--mud-palette-tertiary);
+}
+
+/* --------------- BACKGROUNDS --------------- */
+.trans-bg {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.main-bg { background-color: var(--mud-palette-primary); }
+
+.form-bg {
+    background-color: #ddde;
+}
+
+.linear-gradient-bg {
+    background: linear-gradient(var(--mud-palette-secondary), var(--mud-palette-primary), var(--mud-palette-secondary));
+}
+
+.radial-gradient-bg {
+    background: radial-gradient(circle closest-corner at 50% 50%, var(--mud-palette-primary), var(--mud-palette-secondary));
+}
+
+.radial-gradient-bg-rev {
+    background: radial-gradient(circle closest-corner at 50% 50%, var(--mud-palette-secondary), var(--mud-palette-primary));
+}
+
+/* --------------- BUTTONS --------------- */
+.btn-nav-active {
+    color: var(--mud-palette-text-primary);
+    text-decoration: underline;
+    font-weight: bolder;
+    font-size: 16px
+}
+
+    .btn-nav-active :hover {
+        text-decoration: underline;
+    }
+
+/* --------------- ANIMATIONS --------------- */
+
+/* --------------- IMAGES --------------- */
+.img-small { width: 80px; height: 80px; }
