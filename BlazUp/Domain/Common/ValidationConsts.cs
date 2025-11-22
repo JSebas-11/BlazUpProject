@@ -25,7 +25,7 @@ public static class ValidationConsts {
     public const int MaxUserNameLength = 64;
     public const int MinPasswordLength = 5;
     public const int MaxPasswordLength = 30;
-    public const string PasswordPattern = @"^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{5,20}$";
+    public const string PasswordPattern = @"^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{5,30}$";
 
     //NotificationApp
     public const int MinTitleLength = 4;

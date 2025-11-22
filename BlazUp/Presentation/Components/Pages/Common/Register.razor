@@ -12,46 +12,54 @@
                 <MudText Typo="Typo.body1" Class="text-color-sec">Sign up quick and easy</MudText>
 
                 <!--MAIN LAYOUT - FORM - INPUTS -->
-                <MudPaper Elevation="15" Class="pa-10 form-bg">
-                    <MudForm>
+                <MudPaper Elevation="15" Class="pa-10 form-bg" Outlined="true">
+                    
+                    <MudForm @ref="_form" Model="@_userForm">
                         <!--MAIN LAYOUT - FORM - INPUTS - ROLE -->
-                        <MudSelect T="string" Label="Select your role"
+                        <MudSelect T="int" Label="Select your role" For="() => _userForm.RoleId"
                                    Variant="Variant.Outlined" FullWidth="true"
                                    AdornmentIcon="@Icons.Material.Filled.SupervisedUserCircle" AdornmentColor="Color.Primary">
-                            <MudSelectItem T="string">Admin</MudSelectItem>
-                            <MudSelectItem T="string">Client</MudSelectItem>
-                            <MudSelectItem T="string">Developer</MudSelectItem>
+                            @if (_roles is not null) {
+                                @foreach (var role in _roles) {
+                                        <MudSelectItem T="int" Value="@role.UserRoleId">@role.UserRoleDescription</MudSelectItem>
+                                }
+                            }
                         </MudSelect>
 
                         <!--MAIN LAYOUT - FORM - INPUTS - DNI -->
-                        <MudTextField T="string" Label="DNI" InputType="InputType.Text"
+                        <MudTextField T="string" Label="DNI" For="() => _userForm.Dni" InputType="InputType.Text"
                                       Variant="Variant.Filled" MaxLength=13
                                       HelperText="Type your DNI" HelperTextOnFocus="true"
                                       Adornment=Adornment.End AdornmentIcon="@Icons.Material.Filled.Badge" AdornmentColor="Color.Primary" />
+                        
+                        <!--MAIN LAYOUT - FORM - INPUTS - USERNAME -->
+                        <MudTextField T="string" Label="UserName" For="() => _userForm.UserName" InputType="InputType.Text"
+                                      Variant="Variant.Filled" MaxLength=64
+                                      HelperText="Type your UserName" HelperTextOnFocus="true"
+                                      Adornment=Adornment.End AdornmentIcon="@Icons.Material.Outlined.Abc" AdornmentColor="Color.Primary" />
 
                         <!--MAIN LAYOUT - FORM - INPUTS - PASSWORD -->
-                        <MudTextField T="string" Label="Password" InputType="InputType.Password"
-                                      Variant="Variant.Filled"
-                                      HelperText="Type your Password" HelperTextOnFocus="true"
-                                      Adornment=Adornment.End AdornmentIcon="@Icons.Material.Filled.Password" AdornmentColor="Color.Primary" />
-                        <MudTextField T="string" Label="Confirm Password" InputType="InputType.Password"
-                                      Variant="Variant.Filled"
-                                      HelperText="Confirm your Password" HelperTextOnFocus="true"
-                                      Adornment=Adornment.End AdornmentIcon="@Icons.Material.Filled.Password" AdornmentColor="Color.Primary" />
+                        <MudStack Row="true" Class="mt-10" AlignItems="AlignItems.Center" Justify="Justify.Center">
+                            <MudTextField T="string" Label="Password" For="() => _userForm.Password"
+                                          Variant="Variant.Filled" InputType="@_passwordIT"
+                                          HelperText="Type your Password" HelperTextOnFocus="true" MaxLength=30
+                                          Adornment=Adornment.End AdornmentIcon="@Icons.Material.Filled.Password" AdornmentColor="Color.Primary" />
 
-
+                            <MudToggleIconButton @bind-Toggled="_showPassword" 
+                                                 Icon="@Icons.Material.Outlined.VisibilityOff" ToggledIcon="@Icons.Material.Outlined.Visibility"/>
+                        </MudStack>
 
                         <!--MAIN LAYOUT - FORM - INPUTS - BUTTONs -->
-                        <MudButton Color="Color.Tertiary" Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.Send" Class="mt-8">
+                        <MudButton @onclick="Submit" Color="Color.Tertiary" Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.Send" Class="mt-8">
                             Sign Up
                         </MudButton>
+                    </MudForm>
 
                         <MudButton @onclick="NavigateToLogin" Color="Color.Secondary" Variant="Variant.Text" FullWidth="false" Size="Size.Small"
                                    DropShadow="true" Class="mt-2">
                             Back to login
                         </MudButton>
 
-                    </MudForm>
                 </MudPaper>
 
             </MudStack>
