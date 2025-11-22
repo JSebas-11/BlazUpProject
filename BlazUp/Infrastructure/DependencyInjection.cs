@@ -1,10 +1,14 @@
-﻿using Domain.Abstractions.Repositories;
+﻿using Application.Abstractions.Cache;
+using Application.Abstractions.Utilities;
+using Domain.Abstractions.Repositories;
 using Domain.Abstractions.UnitOfWork;
 using Domain.Models.Lookups;
+using Infrastructure.Cache;
 using Infrastructure.Data;
+using Infrastructure.Repositories;
 using Infrastructure.Repositories.Lookups;
+using Infrastructure.Utilities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Infrastructure;
@@ -16,13 +20,19 @@ public static class DependencyInjection {
         services.AddDbContext<BlazUpProjectContext>(op => op.UseSqlServer(connectionStr), ServiceLifetime.Scoped);
 
         // Cache
-        services.AddSingleton<IMemoryCache, MemoryCache>();
+        services.AddMemoryCache();
+        services.AddScoped<IAppCacheService, AppCacheService>();
+        
+        // Utilities
+        services.AddSingleton<IHasher, Hasher>();
 
         // Repositories
         services.AddScoped<IReadOnlyRepository<LevelPriority>, LevelPriorityRepository>();
         services.AddScoped<IReadOnlyRepository<RequirementType>, RequirementTypeRepository>();
         services.AddScoped<IReadOnlyRepository<StateEntity>, StateEntityRepository>();
         services.AddScoped<IReadOnlyRepository<UserRole>, UserRoleRepository>();
+
+        services.AddScoped<IUserRepository, UserRepository>();
 
         // UnitOfWork
         services.AddScoped<IUnitOfWork, UnitOfWork.UnitOfWork>();

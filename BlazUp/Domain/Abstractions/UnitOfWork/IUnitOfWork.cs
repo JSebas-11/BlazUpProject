@@ -14,14 +14,16 @@ public interface IUnitOfWork : IAsyncDisposable {
     public IReadOnlyRepository<StateEntity> StateEntities { get; }
     public IReadOnlyRepository<UserRole> UserRoles { get; }
     
-    //---------------------full---------------------
+    //---------------------specific---------------------
+    public IUserRepository Users { get; }
+    
+    //---------------------generic---------------------
     public IRepository<Goal> Goals { get; }
     public IRepository<NotificationApp> Notifications { get; }
     public IRepository<Project> Projects { get; }
     public IRepository<ProjectMember> ProjectMembers { get; }
     public IRepository<Requirement> Requirements { get; }
     public IRepository<TaskApp> Tasks { get; }
-    public IRepository<UserInfo> Users { get; }
     public IRepository<UserTask> UserTasks { get; }
 
     //---------------------METHODS---------------------

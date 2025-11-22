@@ -1,6 +1,6 @@
 ﻿using Domain.Models.Lookups;
 
-namespace Application.Abstractions;
+namespace Application.Abstractions.Cache;
 
 public interface IAppCacheService {
     Task<IReadOnlyList<LevelPriority>> GetPrioritiesAsync();

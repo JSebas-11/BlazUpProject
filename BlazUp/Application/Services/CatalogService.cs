@@ -1,4 +1,4 @@
-﻿using Application.Abstractions;
+﻿using Application.Abstractions.Cache;
 using Domain.Abstractions.Services.Entities;
 using Domain.Models.Lookups;
 

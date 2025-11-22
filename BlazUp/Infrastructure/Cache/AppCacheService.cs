@@ -1,4 +1,4 @@
-﻿using Application.Abstractions;
+﻿using Application.Abstractions.Cache;
 using Domain.Abstractions.UnitOfWork;
 using Domain.Models.Lookups;
 using Microsoft.Extensions.Caching.Memory;

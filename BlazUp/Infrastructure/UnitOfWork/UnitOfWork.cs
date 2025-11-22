@@ -14,13 +14,15 @@ public class UnitOfWork : IUnitOfWork {
         IReadOnlyRepository<LevelPriority> levelPriorityRepository,
         IReadOnlyRepository<RequirementType> requirementTypeRepository,
         IReadOnlyRepository<StateEntity> stateEntityRepository,
-        IReadOnlyRepository<UserRole> userRoleRepository
+        IReadOnlyRepository<UserRole> userRoleRepository,
+        IUserRepository userRepository
     ) {
         _context = context;
         LevelPriorities = levelPriorityRepository;
         RequirementTypes = requirementTypeRepository;
         StateEntities = stateEntityRepository;
         UserRoles = userRoleRepository;
+        Users = userRepository;
     }
 
     //------------------------PROPERTIES------------------------
@@ -29,13 +31,14 @@ public class UnitOfWork : IUnitOfWork {
     public IReadOnlyRepository<StateEntity> StateEntities { get; }
     public IReadOnlyRepository<UserRole> UserRoles { get; }
 
+    public IUserRepository Users { get; }
+
     public IRepository<Goal> Goals => throw new NotImplementedException();
     public IRepository<NotificationApp> Notifications => throw new NotImplementedException();
     public IRepository<Project> Projects => throw new NotImplementedException();
     public IRepository<ProjectMember> ProjectMembers => throw new NotImplementedException();
     public IRepository<Requirement> Requirements => throw new NotImplementedException();
     public IRepository<TaskApp> Tasks => throw new NotImplementedException();
-    public IRepository<UserInfo> Users => throw new NotImplementedException();
     public IRepository<UserTask> UserTasks => throw new NotImplementedException();
 
     //------------------------METHODS------------------------
