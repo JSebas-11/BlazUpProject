@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories.Lookups;
 
-public class LevelPriorityRepository : IReadOnlyRepository<LevelPriority> {
+internal class LevelPriorityRepository : IReadOnlyRepository<LevelPriority> {
     //------------------------INITIALIZATION------------------------
     private readonly BlazUpProjectContext _context;
     private readonly DbSet<LevelPriority> _table;

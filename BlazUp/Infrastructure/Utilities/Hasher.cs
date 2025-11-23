@@ -2,7 +2,7 @@
 
 namespace Infrastructure.Utilities;
 
-public class Hasher : IHasher {
+internal class Hasher : IHasher {
     public Hasher() { }
 
     public string HashPassword(string password) => BCrypt.Net.BCrypt.HashPassword(password);

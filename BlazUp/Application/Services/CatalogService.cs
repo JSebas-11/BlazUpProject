@@ -4,7 +4,7 @@ using Domain.Models.Lookups;
 
 namespace Application.Services;
 
-public class CatalogService : ICatalogService {
+internal class CatalogService : ICatalogService {
     //------------------------INITIALIZATION------------------------
     private readonly IAppCacheService _cache;
     public CatalogService(IAppCacheService cacheService)

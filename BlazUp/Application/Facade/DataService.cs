@@ -3,7 +3,7 @@ using Domain.Abstractions.Services.Facade;
 
 namespace Application.Facade;
 
-public class DataService : IDataService {
+internal class DataService : IDataService {
     //------------------------INITIALIZATION------------------------
     public DataService(
         ICatalogService catalogService,

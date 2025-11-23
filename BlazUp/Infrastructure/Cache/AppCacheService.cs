@@ -5,7 +5,7 @@ using Microsoft.Extensions.Caching.Memory;
 
 namespace Infrastructure.Cache;
 
-public class AppCacheService : IAppCacheService {
+internal class AppCacheService : IAppCacheService {
     //------------------------INITIALIZATION------------------------
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMemoryCache _cache;

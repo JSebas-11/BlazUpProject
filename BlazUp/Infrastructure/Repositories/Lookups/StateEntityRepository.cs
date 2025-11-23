@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories.Lookups;
 
-public class StateEntityRepository : IReadOnlyRepository<StateEntity> {
+internal class StateEntityRepository : IReadOnlyRepository<StateEntity> {
     //------------------------INITIALIZATION------------------------
     private readonly BlazUpProjectContext _context;
     private readonly DbSet<StateEntity> _table;

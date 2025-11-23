@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories.Lookups;
 
-public class UserRoleRepository : IReadOnlyRepository<UserRole> {
+internal class UserRoleRepository : IReadOnlyRepository<UserRole> {
     //------------------------INITIALIZATION------------------------
     private readonly BlazUpProjectContext _context;
     private readonly DbSet<UserRole> _table;

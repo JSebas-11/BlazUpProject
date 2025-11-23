@@ -5,7 +5,7 @@ using Domain.Models.Lookups;
 
 namespace Infrastructure.Data;
 
-public partial class BlazUpProjectContext : DbContext {
+internal partial class BlazUpProjectContext : DbContext {
     //--------------------------INITIALIZATIION--------------------------
     public BlazUpProjectContext() { }
 

@@ -7,7 +7,7 @@ using Infrastructure.Data;
 
 namespace Infrastructure.UnitOfWork;
 
-public class UnitOfWork : IUnitOfWork {
+internal class UnitOfWork : IUnitOfWork {
     //------------------------INITIALIZATION------------------------
     private readonly BlazUpProjectContext _context;
     public UnitOfWork(BlazUpProjectContext context,

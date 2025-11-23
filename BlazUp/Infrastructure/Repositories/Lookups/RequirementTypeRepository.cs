@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories.Lookups;
 
-public class RequirementTypeRepository : IReadOnlyRepository<RequirementType> {
+internal class RequirementTypeRepository : IReadOnlyRepository<RequirementType> {
     //------------------------INITIALIZATION------------------------
     private readonly BlazUpProjectContext _context;
     private readonly DbSet<RequirementType> _table;

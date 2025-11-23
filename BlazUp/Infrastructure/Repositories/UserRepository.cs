@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories;
 
-public class UserRepository : IUserRepository {
+internal class UserRepository : IUserRepository {
     //------------------------INITIALIZATION------------------------
     private readonly BlazUpProjectContext _context;
     private readonly DbSet<UserInfo> _table;

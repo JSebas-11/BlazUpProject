@@ -8,7 +8,7 @@ using Domain.Models;
 
 namespace Application.Services;
 
-public class UserService : IUserService {
+internal class UserService : IUserService {
     //------------------------INITIALIZATION------------------------
     private readonly IUnitOfWork _unitOfWork;
     private readonly IHasher _hasher;

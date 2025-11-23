@@ -3,7 +3,7 @@
 namespace Presentation.Services;
 
 //Clase para centralizar la creacion e interaccion de las paletas de colores, tipografias, etc
-public class ThemeService {
+internal class ThemeService {
     //------------------------PROPERTIES------------------------
     public MudTheme LightTheme { get; }
     public MudTheme DarkTheme { get; }
