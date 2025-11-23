@@ -16,7 +16,7 @@
                     
                     <MudForm @ref="_form" Model="@_userForm">
                         <!--MAIN LAYOUT - FORM - INPUTS - ROLE -->
-                        <MudSelect T="int" Label="Select your role" For="() => _userForm.RoleId"
+                        <MudSelect T="int" Label="Select your role" For="() => _userForm.RoleId" @bind-Value="_userForm.RoleId"
                                    Variant="Variant.Outlined" FullWidth="true"
                                    AdornmentIcon="@Icons.Material.Filled.SupervisedUserCircle" AdornmentColor="Color.Primary">
                             @if (_roles is not null) {
@@ -27,20 +27,20 @@
                         </MudSelect>
 
                         <!--MAIN LAYOUT - FORM - INPUTS - DNI -->
-                        <MudTextField T="string" Label="DNI" For="() => _userForm.Dni" InputType="InputType.Text"
-                                      Variant="Variant.Filled" MaxLength=13
+                        <MudTextField T="string" Label="DNI" For="() => _userForm.Dni" @bind-Value="_userForm.Dni"
+                                      Variant="Variant.Filled" MaxLength=13 InputType="InputType.Text"
                                       HelperText="Type your DNI" HelperTextOnFocus="true"
                                       Adornment=Adornment.End AdornmentIcon="@Icons.Material.Filled.Badge" AdornmentColor="Color.Primary" />
                         
                         <!--MAIN LAYOUT - FORM - INPUTS - USERNAME -->
-                        <MudTextField T="string" Label="UserName" For="() => _userForm.UserName" InputType="InputType.Text"
-                                      Variant="Variant.Filled" MaxLength=64
+                        <MudTextField T="string" Label="UserName" For="() => _userForm.UserName" @bind-Value="_userForm.UserName"
+                                      Variant="Variant.Filled" MaxLength=64 InputType="InputType.Text"
                                       HelperText="Type your UserName" HelperTextOnFocus="true"
                                       Adornment=Adornment.End AdornmentIcon="@Icons.Material.Outlined.Abc" AdornmentColor="Color.Primary" />
 
                         <!--MAIN LAYOUT - FORM - INPUTS - PASSWORD -->
                         <MudStack Row="true" Class="mt-10" AlignItems="AlignItems.Center" Justify="Justify.Center">
-                            <MudTextField T="string" Label="Password" For="() => _userForm.Password"
+                            <MudTextField T="string" Label="Password" For="() => _userForm.Password" @bind-Value="_userForm.Password"
                                           Variant="Variant.Filled" InputType="@_passwordIT"
                                           HelperText="Type your Password" HelperTextOnFocus="true" MaxLength=30
                                           Adornment=Adornment.End AdornmentIcon="@Icons.Material.Filled.Password" AdornmentColor="Color.Primary" />
@@ -50,13 +50,14 @@
                         </MudStack>
 
                         <!--MAIN LAYOUT - FORM - INPUTS - BUTTONs -->
-                        <MudButton @onclick="Submit" Color="Color.Tertiary" Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.Send" Class="mt-8">
+                        <MudButton @onclick="Submit" Color="Color.Tertiary" Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.Send" 
+                                   Class="mt-8" Disabled="@_isLoading">
                             Sign Up
                         </MudButton>
                     </MudForm>
 
                         <MudButton @onclick="NavigateToLogin" Color="Color.Secondary" Variant="Variant.Text" FullWidth="false" Size="Size.Small"
-                                   DropShadow="true" Class="mt-2">
+                                   DropShadow="true" Class="mt-2" Disabled="@_isLoading">
                             Back to login
                         </MudButton>
 

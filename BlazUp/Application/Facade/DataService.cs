@@ -5,8 +5,12 @@ namespace Application.Facade;
 
 public class DataService : IDataService {
     //------------------------INITIALIZATION------------------------
-    public DataService(ICatalogService catalogService) {
+    public DataService(
+        ICatalogService catalogService,
+        IUserService userService
+    ) {
         Catalogs = catalogService;
+        Users = userService;
     }
 
     //------------------------SERVICES------------------------

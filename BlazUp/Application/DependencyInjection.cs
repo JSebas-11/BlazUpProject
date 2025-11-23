@@ -10,6 +10,7 @@ public static class DependencyInjection {
     public static IServiceCollection AddApplication(this IServiceCollection services) {
         // Injecciones de Services
         services.AddScoped<ICatalogService, CatalogService>();
+        services.AddScoped<IUserService, UserService>();
 
         services.AddScoped<IDataService, DataService>();
 
