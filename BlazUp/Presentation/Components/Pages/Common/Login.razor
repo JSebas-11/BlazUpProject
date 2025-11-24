@@ -13,26 +13,30 @@
 
                 <!--MAIN LAYOUT - FORM -->
                 <MudPaper Elevation="15" Class="pa-10 form-bg">
-                    <MudForm>
+                    <MudForm @ref="_form" Model="@_userForm">
                         <!--MAIN LAYOUT - FORM - DNI -->
-                        <MudTextField T="string" Label="DNI" InputType="InputType.Text"
-                                      Variant="Variant.Filled" MaxLength=13
+                        <MudTextField T="string" Label="DNI" For="() => _userForm.Dni" @bind-Value="_userForm.Dni"
+                                      Variant="Variant.Filled" MaxLength=13 InputType="InputType.Text"
                                       HelperText="Type your DNI" HelperTextOnFocus="true"
                                       Adornment=Adornment.End AdornmentIcon="@Icons.Material.Filled.PermIdentity" AdornmentColor="Color.Primary" />
 
                         <!--MAIN LAYOUT - FORM - PASSWORD -->
-                        <MudTextField T="string" Label="Password" InputType="InputType.Password"
-                                      Variant="Variant.Filled"
+                        <MudTextField T="string" Label="Password" For="() => _userForm.Password" @bind-Value="_userForm.Password"
+                                      Variant="Variant.Filled" InputType="@_passwordIT"
                                       HelperText="Type your Password" HelperTextOnFocus="true"
                                       Adornment=Adornment.End AdornmentIcon="@Icons.Material.Filled.Password" AdornmentColor="Color.Primary" />
 
                         <!--MAIN LAYOUT - FORM - BTNs -->
-                        <MudButton Color="Color.Tertiary" Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.Send" Class="mt-8">
+                        <MudToggleIconButton @bind-Toggled="_showPassword"
+                                             Icon="@Icons.Material.Outlined.Visibility" ToggledIcon="@Icons.Material.Outlined.VisibilityOff" />
+
+                        <MudButton @onclick="Submit" Disabled="@_isLoading" Color="Color.Tertiary" Variant="Variant.Filled" 
+                                   EndIcon="@Icons.Material.Filled.Send" Class="mt-8">
                             LogIn
                         </MudButton>
 
-                        <MudButton @onclick="NavigateToRegister" Color="Color.Secondary" Variant="Variant.Text" FullWidth="false" Size="Size.Small"
-                                   DropShadow="true" Class="mt-2">
+                        <MudButton @onclick="NavigateToRegister" Disabled="@_isLoading" Color="Color.Secondary" Variant="Variant.Text"
+                                   FullWidth="false" Size="Size.Small" DropShadow="true" Class="mt-2">
                             Don't you have an account? Sign up here
                         </MudButton>
 
