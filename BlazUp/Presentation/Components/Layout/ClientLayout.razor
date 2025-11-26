@@ -1,5 +1,64 @@
 ﻿@inherits LayoutComponentBase
 
-<MudMainContent>
-    @Body
-</MudMainContent>
+<!--CLIENT LAYOUT-->
+<MudLayout>
+
+    <!--CLIENT LAYOUT - APPBAR -->
+    <MudAppBar Color="Color.Primary">
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" @onclick="DrawerClicked" Class="text-color-main" />
+
+        <MudStack Spacing="1" Class="ml-5">
+            <MudText Typo="Typo.h6">Welcome, @ClientName!</MudText>
+            <MudText Typo="Typo.body2">@_date</MudText>
+        </MudStack>
+
+        <MudSpacer />
+
+        <MudImage Src="images/blazUpSymbol.jpg" Class="img-icon" />
+        <MudText Typo="Typo.h6" Class="ml-2" Style="text-decoration: underline;">BlazUp</MudText>
+    </MudAppBar>
+
+    <!--CLIENT LAYOUT - DRAWER -->
+    <MudDrawer @bind-Open="_menuOpen" Color="Color.Primary">
+        <MudDrawerHeader>
+            <MudStack Row="true" AlignItems="AlignItems.Center">
+                <MudIcon Icon="@Icons.Material.Filled.MenuBook" />
+                <MudText Typo="Typo.h5">Client Menu</MudText>
+            </MudStack>
+        </MudDrawerHeader>
+
+        <!--CLIENT LAYOUT - DRAWER - LINKS -->
+        <MudNavMenu Color="Color.Transparent">
+            <MudNavLink Href="@AppRoutes.Home" Icon="@Icons.Material.Outlined.Home" IconColor="Color.Surface">
+                Home
+            </MudNavLink>
+            <MudNavLink Href="@AppRoutes.Projects" Icon="@Icons.Material.Filled.Workspaces" IconColor="Color.Surface">
+                Projects
+            </MudNavLink>
+            <MudNavLink Href="@AppRoutes.Notifications" Icon="@Icons.Material.Outlined.Notifications" IconColor="Color.Surface">
+                Notifications
+            </MudNavLink>
+            <MudNavLink Href="@AppRoutes.Configuration" Icon="@Icons.Material.Filled.ManageAccounts" IconColor="Color.Surface">
+                Configuration
+            </MudNavLink>
+            <MudNavLink Href="@AppRoutes.Login" Icon="@Icons.Material.Outlined.Logout" IconColor="Color.Surface">
+                LogOut
+            </MudNavLink>
+        </MudNavMenu>
+    </MudDrawer>
+
+    <!--CLIENT LAYOUT - CONTENT -->
+    <MudMainContent>
+        @Body
+    </MudMainContent>
+</MudLayout>
+
+@code {
+    private string _date = DateTime.Today.ToString("dddd, MMMM dd, yyyy");
+    private bool _menuOpen = false;
+
+    [Parameter]
+    public string ClientName { get; set; } = "Client";
+
+    private void DrawerClicked() => _menuOpen = !_menuOpen;
+}

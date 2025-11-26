@@ -200,10 +200,10 @@ VALUES (1, 'Admin'), (2, 'Client'), (3, 'Developer');
 INSERT INTO RequirementType
 VALUES (1, 'FixBug'), (2, 'NewFeature'), (3, 'Change'), (4, 'Refactor'), (5, 'Testing'), (6, 'Design'), (7, 'Documentation'), (8, 'Other');
 
-INSERT INTO NotificationState
+INSERT INTO StateNotification
 VALUES (1, 'UnRead'), (2, 'Read');
 
-INSERT INTO EntityState
+INSERT INTO StateEntity
 VALUES (1, 'Pending'), (2, 'InProgress'), (3, 'Postponed'), (4, 'Finished'), (5, 'Completed');
 
 INSERT INTO LevelPriority
