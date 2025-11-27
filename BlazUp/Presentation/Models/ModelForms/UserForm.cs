@@ -1,7 +1,7 @@
 ﻿using Domain.Common;
 using System.ComponentModel.DataAnnotations;
 
-namespace Presentation.Components.ModelForms;
+namespace Presentation.Models.ModelForms;
 
 //Comprobacion de la informacion de usuarios recibos en la UI mediante DataAnnotations
 public class UserForm {

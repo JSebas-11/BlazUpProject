@@ -19,8 +19,4 @@ internal class AppRoutes {
     public const string DeveloperRequirements = "developer/requirements";
     public const string DeveloperTasks = "developer/tasks";
     #endregion
-
-    public const string AdminIndex = "/admin";
-    public const string ClientIndex = "/client";
-    public const string DeveloperIndex = "/developer";
 }

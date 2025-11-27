@@ -7,6 +7,7 @@ public static class DependencyInyection {
         // Injecciones de Services y demas utilidades de la capa Presentation
         services.AddSingleton<ThemeService>();
 
+        services.AddScoped<UserContext>();
 
         return services;
     }

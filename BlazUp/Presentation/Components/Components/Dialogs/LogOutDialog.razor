@@ -1,0 +1,21 @@
+﻿<MudDialog>
+    <TitleContent>Logging Out</TitleContent>
+
+    <DialogContent>
+        <MudText>Are you sure that you want to close your current session?</MudText>
+    </DialogContent>
+
+    <DialogActions>
+        <MudButton Color="@Color.Info" OnClick="() => MudDialog.Cancel()">
+            Cancel
+        </MudButton>
+        <MudButton Variant="Variant.Filled" OnClick="() => MudDialog.Close(DialogResult.Ok(true))">
+            Confirm
+        </MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    [CascadingParameter]
+    private IMudDialogInstance MudDialog { get; set; } = default!;
+}

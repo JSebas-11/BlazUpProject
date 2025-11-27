@@ -4,7 +4,7 @@ using Domain.Common.Enums;
 using Domain.Models.Lookups;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
-using Presentation.Components.ModelForms;
+using Presentation.Models.ModelForms;
 using Presentation.Routing;
 
 namespace Presentation.Components.Pages.Common;

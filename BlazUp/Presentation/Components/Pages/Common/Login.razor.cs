@@ -3,8 +3,9 @@ using Domain.Common.Enums;
 using Domain.Models;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
-using Presentation.Components.ModelForms;
+using Presentation.Models.ModelForms;
 using Presentation.Routing;
+using Presentation.Services;
 
 namespace Presentation.Components.Pages.Common;
 
@@ -13,6 +14,7 @@ public partial class Login {
     [Inject] public NavigationManager Nav { get; private set; } = default!;
     [Inject] public IDataService DataService { get; private set; } = default!;
     [Inject] public ISnackbar Snackbar { get; private set; } = default!;
+    [Inject] public UserContext UserContext { get; private set; } = default!;
 
     //--------------------------auxFields--------------------------
     private bool _showPassword = false;
@@ -41,24 +43,13 @@ public partial class Login {
                 Snackbar.Add("DNI and password do not match. Try again", Severity.Warning);
                 return;
             }
-            
-            //En caso de logearse correctamente lo enviamos al index del layout que corresponda con su rol
-            string layout = string.Empty;
 
-            switch ((Role)user.RoleId) {
-                case Role.Admin:
-                    layout = AppRoutes.AdminIndex;
-                    break;
-                case Role.Client:
-                    layout = AppRoutes.ClientIndex;
-                    break;
-                case Role.Developer:
-                    layout = AppRoutes.DeveloperIndex;
-                    break;
-                default: throw new InvalidOperationException("User Role is not identified");
-            }
+            //Creacion del UserContext (es usado para autenticacion y navegacion entre los layouts de cada rol)
+            UserContext.SetUser(user);
 
-            Nav.NavigateTo(layout);
+            if (!UserContext.IsAuthenticated) throw new InvalidOperationException("User Role is not identified");
+
+            Nav.NavigateTo(AppRoutes.Home);
         }
         finally { _isLoading = false; }
     }
