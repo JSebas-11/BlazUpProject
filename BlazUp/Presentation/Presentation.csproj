@@ -20,7 +20,6 @@
 
 
   <ItemGroup>
-    <Folder Include="Components\Forms\" />
     <Folder Include="Components\Pages\Admin\" />
     <Folder Include="Components\Pages\Client\" />
     <Folder Include="Components\Pages\Developer\" />

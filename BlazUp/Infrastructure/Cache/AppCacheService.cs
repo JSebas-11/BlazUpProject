@@ -1,5 +1,6 @@
 ﻿using Application.Abstractions.Cache;
 using Domain.Abstractions.UnitOfWork;
+using Domain.Models;
 using Domain.Models.Lookups;
 using Microsoft.Extensions.Caching.Memory;
 
@@ -19,8 +20,10 @@ internal class AppCacheService : IAppCacheService {
     private const string REQTYPES_KEY = "catalog:reqTypes";
     private const string USERROLES_KEY = "catalog:userRoles";
     private const string STATES_KEY = "catalog:states";
+    private const string USERS_KEY = "table:users";
 
     //------------------------METHODS------------------------
+    #region LOOKUPS
     public async Task<IReadOnlyList<LevelPriority>> GetPrioritiesAsync() {
         IReadOnlyList<LevelPriority> priorities = [];
 
@@ -64,4 +67,20 @@ internal class AppCacheService : IAppCacheService {
 
         return states;
     }
+    #endregion
+
+    #region USERS
+    public async Task<IReadOnlyList<UserInfo>> GetUsersAsync() {
+        IReadOnlyList<UserInfo> users = [];
+
+        if (!_cache.TryGetValue(USERS_KEY, out users)) {
+            users = await _unitOfWork.Users.GetAllAsync();
+            _cache.Set(USERS_KEY, users);
+        }
+
+        return users;
+    }
+
+    public void ClearUsersCache() => _cache.Remove(USERS_KEY);
+    #endregion
 }

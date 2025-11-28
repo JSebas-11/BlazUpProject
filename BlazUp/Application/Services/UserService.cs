@@ -1,4 +1,5 @@
-﻿using Application.Abstractions.Utilities;
+﻿using Application.Abstractions.Cache;
+using Application.Abstractions.Utilities;
 using Domain.Abstractions.Services.Entities;
 using Domain.Abstractions.UnitOfWork;
 using Domain.Builders;
@@ -12,9 +13,11 @@ internal class UserService : IUserService {
     //------------------------INITIALIZATION------------------------
     private readonly IUnitOfWork _unitOfWork;
     private readonly IHasher _hasher;
-    public UserService(IUnitOfWork unitOfWork, IHasher hasher) {
+    private readonly IAppCacheService _cache;
+    public UserService(IUnitOfWork unitOfWork, IHasher hasher, IAppCacheService cacheService) {
         _unitOfWork = unitOfWork;
         _hasher = hasher;
+        _cache = cacheService;
     }
 
     //------------------------METHODS------------------------
@@ -28,6 +31,8 @@ internal class UserService : IUserService {
         //Validar si contraseña es correcta, y devolver el usuario en caso de serlo
         return _hasher.VerifyPassword(password, user.PasswordHash) ? user : null;
     }
+
+    public Task<IReadOnlyList<UserInfo>> GetUsersAsync() => _cache.GetUsersAsync();
     #endregion
 
     #region CrudMethods
@@ -46,13 +51,19 @@ internal class UserService : IUserService {
         operations = await _unitOfWork.CommitAsync();
         if (!operations.Success) return Result.Fail($"Error creating User ({userName})");
 
+        //Limpieza de cache para que vaya a la DB a actualizar los datos
+        _cache.ClearUsersCache();
         return Result.Ok($"User ({userName}) has been registered successfully");
     }
     public async Task<Result> UpdateUserAsync(UserInfo user) {
         Result operation = await _unitOfWork.Users.UpdateAsync(user);
         if (!operation.Success) return operation;
 
-        return await _unitOfWork.CommitAsync();
+        operation = await _unitOfWork.CommitAsync();
+
+        if (operation.Success) _cache.ClearUsersCache();
+
+        return operation;
     }
     #endregion
 }

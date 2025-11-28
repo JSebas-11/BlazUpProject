@@ -2,14 +2,40 @@
 .text-color-main { color: #ffffffff; }
 .text-color-sec { color: #ffffffaa; }
 
+/* --------------- BACKGROUNDS --------------- */
+.trans-bg {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.main-bg { background-color: var(--mud-palette-primary); }
+
+.form-bg {
+    background-color: #ddde;
+}
+
+.linear-gradient-bg {
+    background: linear-gradient(to bottom, var(--mud-palette-secondary) 30%, var(--mud-palette-primary) 70% );
+}
+
+.radial-gradient-bg {
+    background: radial-gradient(circle closest-corner at 50% 50%, var(--mud-palette-primary), var(--mud-palette-secondary));
+}
+
+.radial-gradient-bg-rev {
+    background: radial-gradient(circle closest-corner at 50% 50%, var(--mud-palette-secondary), var(--mud-palette-primary));
+}
+
 /* --------------- CONTAINERS --------------- */
-.container-overlay {
+.container-main {
     height: 100vh;
+    background: radial-gradient(circle closest-corner at 50% 50%, var(--mud-palette-secondary), var(--mud-palette-primary));
+}
+
+.container-overlay {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: var(--mud-palette-primary);
 }
 
 /* --------------- TEXT --------------- */
@@ -28,28 +54,14 @@
     color: var(--mud-palette-tertiary);
 }
 
-/* --------------- BACKGROUNDS --------------- */
-.trans-bg {
-    background-color: rgba(255, 255, 255, 0.15);
+.txt-header {
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    line-height: 36px;
+    color: #ffffffff;
 }
 
-.main-bg { background-color: var(--mud-palette-primary); }
-
-.form-bg {
-    background-color: #ddde;
-}
-
-.linear-gradient-bg {
-    background: linear-gradient(var(--mud-palette-secondary), var(--mud-palette-primary), var(--mud-palette-secondary));
-}
-
-.radial-gradient-bg {
-    background: radial-gradient(circle closest-corner at 50% 50%, var(--mud-palette-primary), var(--mud-palette-secondary));
-}
-
-.radial-gradient-bg-rev {
-    background: radial-gradient(circle closest-corner at 50% 50%, var(--mud-palette-secondary), var(--mud-palette-primary));
-}
 
 /* --------------- BUTTONS --------------- */
 .btn-nav-active {
