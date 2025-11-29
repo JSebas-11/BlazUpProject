@@ -10,7 +10,6 @@ public interface IDataService {
     public ICatalogService Catalogs { get; }
     public IGoalService Goals { get; }
     public INotificationService Notifications { get; }
-    public IProjectMemberService ProjectMembers { get; }
     public IProjectService Projects { get; }
     public IRequirementService Requirements { get; }
     public ITaskService Tasks { get; }

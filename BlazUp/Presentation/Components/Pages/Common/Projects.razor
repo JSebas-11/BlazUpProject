@@ -1,0 +1,39 @@
+﻿@page "/projects"
+@layout NavigationLayout
+
+@using Domain.Common.Enums;
+
+@if (!UserContext.IsAuthenticated) { <NotAuthorized /> }
+else {
+    <!--MAIN LAYOUT-->
+    <MudGrid>
+        <!--MAIN LAYOUT - HEADER -->
+        <MudItem xs="12">
+            <MudStack Row="true">
+                <MudStack Spacing="1" Class="ml-5">
+                    <MudText Class="txt-header">PROJECTS</MudText>
+                    <MudText Typo="Typo.body2" Class="text-color-sec">Catch up on your projects</MudText>
+                </MudStack>
+
+                <MudSpacer />
+
+                @if (UserContext.Role == Role.Admin) {
+                    <MudFab @onclick="OpenProjectForm" StartIcon="@Icons.Material.Outlined.AddCircle" Label="New Project"
+                            IconColor="Color.Surface" Color="Color.Tertiary" Class="ma-2"/>
+                }
+            </MudStack>
+
+        </MudItem>
+
+        <!--MAIN LAYOUT - PROJECTS CONTAINER -->
+        <MudItem xs="12">
+            <MudPaper Elevation="10" Class="trans-bg ma-10">
+                @if (_isLoading) { <MudProgressCircular Color="@Color.Tertiary" Indeterminate="true"/> }
+                else {
+                    <MudText Color="Color.Warning">WORKING ON IT...</MudText>
+                }
+            </MudPaper>
+        </MudItem>
+
+    </MudGrid>
+}

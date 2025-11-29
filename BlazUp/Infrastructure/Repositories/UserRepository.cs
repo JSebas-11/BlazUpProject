@@ -53,8 +53,7 @@ internal class UserRepository : IUserRepository {
     public async Task<Result> DeleteAsync(int modelId) {
         try {
             UserInfo? user = await GetByIdAsync(modelId);
-            if (user == null)
-                return Result.Fail($"User with id ({modelId}) does not exist");
+            if (user is null) return Result.Fail($"User with id ({modelId}) does not exist");
 
             _table.Remove(user);
             return Result.Ok($"User with id {modelId} deleted sucessfully (Waiting for Commit)");

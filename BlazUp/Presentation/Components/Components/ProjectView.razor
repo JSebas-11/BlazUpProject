@@ -1,0 +1,60 @@
+﻿@using Domain.Common.Enums 
+
+<!-- DESIGN - MAIN LAYOUT -->
+<MudPaper Elevation="3">
+    <MudStack Spacing="2">
+
+        <!-- NAME - STATE -->
+        <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween">
+            <MudText Typo="Typo.h6" Class="fw-bold">
+                @Project.Name
+            </MudText>
+
+            <MudChip T="string" Color="@GetStateColor(Project.State)" Variant="Variant.Filled">
+                @Project.State
+            </MudChip>
+        </MudStack>
+
+        <!-- DESCRIPTION -->
+        <MudText Typo="Typo.body2" Color="Color.Secondary">
+            @Project.Description
+        </MudText>
+
+        <!-- PROGRESS -->
+        <MudProgressLinear Value="@Project.Progress" Color="Color.Primary" Rounded="true" />
+
+        <!-- FOOTER -->
+        <MudDivider Class="my-2" />
+
+        <MudStack Row="true" Justify="Justify.SpaceBetween">
+            <MudText Typo="Typo.caption" Color="Color.Secondary">
+                @Project.InitialDate.ToShortDateString()
+            </MudText>
+
+            <MudText Typo="Typo.caption" Color="Color.Secondary">
+                @Project.MembersCount members
+            </MudText>
+        </MudStack>
+
+    </MudStack>
+</MudPaper>
+
+<!-- DESIGN - STYLE -->
+<style>
+
+</style>
+
+@code {
+    [Parameter]
+    public ProjectDto Project { get; set; } = default!;
+
+    private Color GetStateColor(StateEntity state) {
+        return state switch {
+            StateEntity.Pending | StateEntity.Postponed => Color.Warning,
+            StateEntity.InProgress => Color.Info,
+            StateEntity.Finished => Color.Error,
+            StateEntity.Completed => Color.Success,
+            _ => Color.Default
+        };
+    }
+}

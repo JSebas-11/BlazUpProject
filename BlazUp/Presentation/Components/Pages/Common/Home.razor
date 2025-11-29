@@ -1,7 +1,12 @@
 ﻿@page "/home"
 @layout NavigationLayout
 
-<h3>Home</h3>
+@inject UserContext UserContext
+
+@if (!UserContext.IsAuthenticated) { <NotAuthorized /> }
+else {
+    <h3>Home</h3>
+}
 
 @code {
 

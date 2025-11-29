@@ -7,9 +7,11 @@ internal class DataService : IDataService {
     //------------------------INITIALIZATION------------------------
     public DataService(
         ICatalogService catalogService,
+        IProjectService projectService,
         IUserService userService
     ) {
         Catalogs = catalogService;
+        Projects = projectService;
         Users = userService;
     }
 
@@ -17,7 +19,6 @@ internal class DataService : IDataService {
     public ICatalogService Catalogs { get; }
     public IGoalService Goals { get; }
     public INotificationService Notifications { get; }
-    public IProjectMemberService ProjectMembers { get; }
     public IProjectService Projects { get; }
     public IRequirementService Requirements { get; }
     public ITaskService Tasks { get; }

@@ -15,6 +15,12 @@ public partial class Project : IEntityState {
     public int? ProjectStateId { get; set; }
     public int? CreatedById { get; set; }
 
+    //-------------------------ADD.PROPERTIES-------------------------
+    [NotMapped]
+    public string? CreatorName { get; set; }
+    [NotMapped]
+    public int MembersCount { get; set; }
+
     //-------------------------BEHAVIORS-------------------------
     [NotMapped]
     public int? StateId { get => ProjectStateId; set => ProjectStateId = value; }

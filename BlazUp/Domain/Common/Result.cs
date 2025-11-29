@@ -19,17 +19,17 @@ public class Result {
 }
 
 //------------------------GENERIC------------------------
-public class Result<T> : Result {
+public class GenericResult<T> : Result {
     //------------------------INITIALIZATION------------------------
     public T? Value { get; private set; }
-    private Result(bool success, string description, T? value, string? errorMsg =  null) : 
+    private GenericResult(bool success, string description, T? value, string? errorMsg =  null) : 
         base(success, description, errorMsg) 
     {
         Value = value;
     }
 
     //------------------------STATIC METHODS------------------------
-    public static Result<T> Ok(string description, T value) => new (true, description, value);
-    public static new Result<T> Fail(string description, string? errorMessage = null)
+    public static GenericResult<T> Ok(string description, T value) => new (true, description, value);
+    public static new GenericResult<T> Fail(string description, string? errorMessage = null)
         => new(false, description, default, errorMessage);
 }

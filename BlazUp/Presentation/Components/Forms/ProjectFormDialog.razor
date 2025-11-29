@@ -1,0 +1,85 @@
+﻿<!-- MAIN LAYOUT -->
+<MudDialog Style="background-color: var(--mud-palette-primary)">
+    <!-- DESIGN - TITLE -->
+    <TitleContent>
+        <MudText Align="Align.Center" Class="txt-header">
+            Project Creation
+        </MudText>
+        <MudText Align="Align.Center" Typo="Typo.body2" Class="text-color-sec">
+            Fill the fields up to create a new project 
+        </MudText>
+    </TitleContent>
+
+    <!-- DESIGN - CONTENT -->
+    <DialogContent>
+        <!-- CONTENT - FORM -->
+        <MudPaper Elevation="15" Class="pa-10 form-bg" Outlined="true">
+
+            <MudForm @ref="_form" Model="@_projectForm">
+                <!-- FORM - INPUTS - NAME -->
+                <MudTextField T="string" Label="Project Name" For="() => _projectForm.ProjectName" @bind-Value="_projectForm.ProjectName"
+                              Variant="Variant.Filled" MaxLength=64 InputType="InputType.Text"
+                              HelperText="Type project's name" HelperTextOnFocus="true"
+                              Adornment=Adornment.End AdornmentIcon="@Icons.Material.Filled.Label" AdornmentColor="Color.Primary" />
+                
+                <!-- FORM - INPUTS - DESCRIPTION -->
+                <MudTextField T="string" Label="Project Description" For="() => _projectForm.ProjectDescription" @bind-Value="_projectForm.ProjectDescription"
+                              FullWidth="true" Lines="3" MaxLines="20" MaxLength=512 Placeholder="Type project's description"
+                              InputType="InputType.Text" Variant="Variant.Filled"
+                              Adornment=Adornment.End AdornmentIcon="@Icons.Material.Filled.Description" AdornmentColor="Color.Primary" />
+
+                <!-- FORM - INPUTS - DATES -->
+                <MudStack Row="true" Class="my-5">
+                    <!-- INITALDATE -->
+                    <MudDatePicker For="() => _projectForm.InitialDate" @bind-Date="_projectForm.InitialDate"
+                                   Variant="Variant.Outlined" Label="Initial Date" Placeholder="Project's initial date" />
+
+                    <!-- DEADLINE -->
+                    <MudDatePicker For="() => _projectForm.DeadLine" @bind-Date="_projectForm.DeadLine"
+                                   Variant="Variant.Outlined" Label="Deadline (Optional)" Placeholder="Project's deadline" 
+                                   AdornmentIcon="@Icons.Material.Filled.PunchClock" Clearable="true"/>
+                </MudStack>
+
+                <!-- FORM - INPUTS - MEMBERS -->
+                <MudExpansionPanels Elevation="2">
+                    <MudExpansionPanel Text="Project's Members" Class="trans-bg">
+
+                        <!-- MEMBERS - SELECTION -->
+                        <MudAutocomplete @ref="_macMembers" T="UserDto" Label="Users to add" Clearable="true"
+                                         SearchFunc="UserSearch" ValueChanged="OnMemberSelected" Variant="Variant.Filled"
+                                         AdornmentIcon="@Icons.Material.Outlined.Groups">
+                            <ItemTemplate>
+                                <MudStack Spacing="1">
+                                    <MudText Typo="Typo.body1">@context.UserDni - @context.Role</MudText>
+                                    <MudText Typo="Typo.body2">@context.UserName</MudText>
+                                </MudStack>
+                            </ItemTemplate>
+                        </MudAutocomplete>
+
+                        <!-- MEMBERS - LIST -->
+                        <MudText>Current members count: @_membersAmount</MudText>
+                        <MudChipSet Class="container-scroll" T="UserDto" AllClosable OnClose="MemberOut">
+                            @foreach (var member in _membersSelected) {
+                                <MudChip T="UserDto" Text="@($"{member.UserDni} - {member.Role}")" Tag="member"/>
+                            }
+                        </MudChipSet>
+
+                    </MudExpansionPanel>
+                </MudExpansionPanels>
+            </MudForm>
+
+        </MudPaper>
+    </DialogContent>
+
+    <!-- ACTIONS -->
+    <DialogActions>
+        <MudButton @onclick="Close" Color="Color.Error" StartIcon="@Icons.Material.Outlined.Close" Variant="Variant.Filled" Disabled="_isLoading">
+            Close
+        </MudButton>
+
+        <MudButton @onclick="CreateForm" Color="Color.Success" StartIcon="@Icons.Material.Outlined.Check" Variant="Variant.Filled" Disabled="_isLoading">
+            Create
+        </MudButton>
+    </DialogActions>
+
+</MudDialog>

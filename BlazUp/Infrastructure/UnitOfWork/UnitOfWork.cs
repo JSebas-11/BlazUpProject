@@ -15,7 +15,9 @@ internal class UnitOfWork : IUnitOfWork {
         IReadOnlyRepository<RequirementType> requirementTypeRepository,
         IReadOnlyRepository<StateEntity> stateEntityRepository,
         IReadOnlyRepository<UserRole> userRoleRepository,
-        IUserRepository userRepository
+        IUserRepository userRepository,
+        IProjectMemberRepository projectMemberRepository,
+        IProjectRepository projectRepository
     ) {
         _context = context;
         LevelPriorities = levelPriorityRepository;
@@ -23,6 +25,8 @@ internal class UnitOfWork : IUnitOfWork {
         StateEntities = stateEntityRepository;
         UserRoles = userRoleRepository;
         Users = userRepository;
+        ProjectMembers = projectMemberRepository;
+        Projects = projectRepository;
     }
 
     //------------------------PROPERTIES------------------------
@@ -32,11 +36,11 @@ internal class UnitOfWork : IUnitOfWork {
     public IReadOnlyRepository<UserRole> UserRoles { get; }
 
     public IUserRepository Users { get; }
+    public IProjectMemberRepository ProjectMembers { get; }
+    public IProjectRepository Projects { get; }
 
     public IRepository<Goal> Goals => throw new NotImplementedException();
     public IRepository<NotificationApp> Notifications => throw new NotImplementedException();
-    public IRepository<Project> Projects => throw new NotImplementedException();
-    public IRepository<ProjectMember> ProjectMembers => throw new NotImplementedException();
     public IRepository<Requirement> Requirements => throw new NotImplementedException();
     public IRepository<TaskApp> Tasks => throw new NotImplementedException();
     public IRepository<UserTask> UserTasks => throw new NotImplementedException();

@@ -16,12 +16,12 @@ public interface IUnitOfWork : IAsyncDisposable {
     
     //---------------------specific---------------------
     public IUserRepository Users { get; }
+    public IProjectMemberRepository ProjectMembers { get; }
+    public IProjectRepository Projects { get; }
     
     //---------------------generic---------------------
     public IRepository<Goal> Goals { get; }
     public IRepository<NotificationApp> Notifications { get; }
-    public IRepository<Project> Projects { get; }
-    public IRepository<ProjectMember> ProjectMembers { get; }
     public IRepository<Requirement> Requirements { get; }
     public IRepository<TaskApp> Tasks { get; }
     public IRepository<UserTask> UserTasks { get; }
